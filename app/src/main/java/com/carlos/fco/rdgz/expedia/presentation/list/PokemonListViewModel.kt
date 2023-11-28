@@ -1,12 +1,9 @@
 package com.carlos.fco.rdgz.expedia.presentation.list
 
 import android.content.SharedPreferences
-import android.util.Log
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
-import com.carlos.fco.rdgz.expedia.domain.PokemonRepository
 import com.carlos.fco.rdgz.expedia.domain.usecase.GetPokemonListPaginationUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

@@ -1,6 +1,5 @@
 package com.carlos.fco.rdgz.expedia.data
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.carlos.fco.rdgz.expedia.data.mapper.toPokemon

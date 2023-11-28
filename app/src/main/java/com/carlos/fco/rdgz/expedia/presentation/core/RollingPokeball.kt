@@ -1,4 +1,4 @@
-package com.carlos.fco.rdgz.expedia.presentation.list
+package com.carlos.fco.rdgz.expedia.presentation.core
 
 import androidx.compose.foundation.Image
 import androidx.compose.animation.core.LinearEasing
