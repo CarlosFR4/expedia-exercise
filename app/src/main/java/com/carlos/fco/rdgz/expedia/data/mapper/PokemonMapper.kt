@@ -13,8 +13,8 @@ fun PokemonListItem.toPokemon() = Pokemon(
 
 fun PokemonResponse.toPokemon() = Pokemon(
     name = name,
-    height = height,
-    weight = weight,
+    height = height * 10, // Height is in decimeters, convert to centimeters
+    weight = weight / 10, // weight is in hectograms, convert to kilograms
     orderNumber = id,
     url = "https://pokeapi.co/api/v2/pokemon/$id/",
 )

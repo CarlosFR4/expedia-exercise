@@ -1,24 +1,16 @@
 package com.carlos.fco.rdgz.expedia.presentation.list
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
-import com.carlos.fco.rdgz.expedia.presentation.core.RollingPokeball
+import com.carlos.fco.rdgz.expedia.presentation.core.ErrorScreen
+import com.carlos.fco.rdgz.expedia.presentation.core.LoadingScreen
 
 
 @Composable
@@ -55,58 +47,34 @@ fun PokemonListScreen(
             }
         }
 
-        when (pokemon.loadState.refresh) { //FIRST LOAD
-            is LoadState.Error -> {
-                //TODO Error Item
-                //state.error to get error message
-            }
-
-            is LoadState.Loading -> { // Loading UI
-                item {
-                    Column(
-                        modifier = Modifier
-                            .fillParentMaxSize(),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center,
-                    ) {
-                        Text(
-                            modifier = Modifier
-                                .padding(8.dp),
-                            text = "Refresh Loading"
-                        )
-
-                        RollingPokeball(size = 50.dp)
+        pokemon.loadState.apply {
+            when (refresh) {
+                is LoadState.Error -> {
+                    item {
+                        ErrorScreen(modifier = Modifier.fillParentMaxSize())
                     }
                 }
-            }
 
-            is LoadState.NotLoading -> {
-                //TODO Not Loading UI
-            }
-
-            else -> {}
-        }
-
-        when (pokemon.loadState.append) { // Pagination
-            is LoadState.Error -> {
-                //TODO Pagination Error Item
-                //state.error to get error message
-            }
-
-            is LoadState.Loading -> { // Pagination Loading UI
-                item {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center,
-                    ) {
-                        CircularProgressIndicator(color = Color.Black)
+                is LoadState.Loading -> {
+                    item {
+                        LoadingScreen(modifier = Modifier.fillParentMaxSize())
                     }
                 }
+
+                else -> {}
             }
 
-            else -> {}
+            when (append) { // Pagination
+                is LoadState.Error -> {
+                    item { ErrorItem() }
+                }
+
+                is LoadState.Loading -> {
+                    item { LoadingItem() }
+                }
+
+                else -> {}
+            }
         }
     }
 }

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Carlos Rodriguez Expedia</string>
+    <string name="connection_error">Connection Error</string>
+    <string name="check_connection">Please check your internet connection and try again</string>
+    <string name="searching_pokemon">Searching pokemon...</string>
+    <string name="pokemon_height">Height: %s cm</string>
+    <string name="pokemon_weight">Weight: %s kg</string>
+
 </resources>

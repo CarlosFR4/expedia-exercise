@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import com.carlos.fco.rdgz.expedia.R
 
 @Composable
@@ -32,7 +31,7 @@ fun RollingPokeball(size: Dp) {
 
     Image(
         painter = painterResource(id = R.drawable.pokeball),
-        contentDescription = "Rotating Pokéball",
+        contentDescription = null,
         modifier = Modifier
             .size(size)
             .graphicsLayer {
