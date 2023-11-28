@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.carlos.fco.rdgz.expedia.presentation.list.PokemonListScreen
 import com.carlos.fco.rdgz.expedia.presentation.list.PokemonListViewModel
+import com.carlos.fco.rdgz.expedia.presentation.list.RollingPokeball
 import com.carlos.fco.rdgz.expedia.ui.theme.CarlosRodriguezExpediaTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,8 +28,7 @@ class MainActivity : ComponentActivity() {
             CarlosRodriguezExpediaTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    Greeting("Android")
-                    PokemonListScreen(viewModel = hiltViewModel<PokemonListViewModel>())
+                    PokemonListScreen(viewModel = hiltViewModel())
                 }
             }
         }

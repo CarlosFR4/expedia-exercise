@@ -4,7 +4,6 @@ import com.carlos.fco.rdgz.expedia.PokemonRepositoryImpl
 import com.carlos.fco.rdgz.expedia.data.PokemonService
 import com.carlos.fco.rdgz.expedia.data.TestData
 import com.carlos.fco.rdgz.expedia.domain.PokemonRepository
-import com.carlos.fco.rdgz.expedia.domain.use_case.GetPokemonUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,13 +31,4 @@ object RemoteModule {
     @Singleton
     fun providePokemonRepository(pokemonApi: PokemonService): PokemonRepository =
         PokemonRepositoryImpl(pokemonApi)
-}
-
-@Module
-@InstallIn(ViewModelComponent::class)
-object DomainModule {
-    @Provides
-    @ViewModelScoped
-    fun getPokemonUseCase(pokemonRepository: PokemonRepository): GetPokemonUseCase =
-        GetPokemonUseCase(pokemonRepository)
 }
