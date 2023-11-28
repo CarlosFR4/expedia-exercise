@@ -19,12 +19,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import coil.compose.rememberAsyncImagePainter
+import com.carlos.fco.rdgz.expedia.ProjectConfig
 import com.carlos.fco.rdgz.expedia.R
 import com.carlos.fco.rdgz.expedia.domain.model.Pokemon
 
 @Composable
-fun PokemonDetailsScreen(pokemonId: Int, viewModel: PokemonDetailsViewModel) {
+fun PokemonDetailsScreen(
+    pokemonId: Int,
+    viewModel: PokemonDetailsViewModel
+) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
@@ -32,7 +35,7 @@ fun PokemonDetailsScreen(pokemonId: Int, viewModel: PokemonDetailsViewModel) {
             .padding(16.dp)
             .verticalScroll(rememberScrollState())
     ) {
-        val pokemon: Pokemon by viewModel.getDetails(pokemonId).observeAsState(
+        val pokemon: Pokemon by viewModel.getPokemonDetails(pokemonId).observeAsState(
             Pokemon(
                 name = "Default",
                 height = 0,
@@ -43,7 +46,7 @@ fun PokemonDetailsScreen(pokemonId: Int, viewModel: PokemonDetailsViewModel) {
         )
 
         AsyncImage(
-            model = pokemon.orderNumber?.let { "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${it}.png" }
+            model = pokemon.orderNumber?.let { ProjectConfig.POKEMON_IMAGE_URL + pokemonId + ".png" }
                 ?: R.drawable.missing_image,
             contentDescription = pokemon.name,
             modifier = Modifier

@@ -18,8 +18,4 @@ interface PokemonService {
     suspend fun getPokemon(
         @Path("id") id: Int,
     ): PokemonResponse
-
-    companion object {
-        const val BASE_URL = "https://pokeapi.co/api/v2/"
-    }
 }

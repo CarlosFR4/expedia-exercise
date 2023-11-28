@@ -73,6 +73,7 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
 
     // ViewModel utilities for Compose
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version"
 //    implementation "androidx.lifecycle:lifecycle-runtime-compose:$lifecycle_version"
 

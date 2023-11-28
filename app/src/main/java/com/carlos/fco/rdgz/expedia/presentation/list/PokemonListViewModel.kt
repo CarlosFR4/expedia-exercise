@@ -1,25 +1,29 @@
 package com.carlos.fco.rdgz.expedia.presentation.list
 
 import android.content.SharedPreferences
-import androidx.compose.foundation.lazy.LazyListState
+import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import com.carlos.fco.rdgz.expedia.domain.PokemonRepository
+import com.carlos.fco.rdgz.expedia.domain.usecase.GetPokemonListPaginationUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.async
 import javax.inject.Inject
 
 @HiltViewModel
 class PokemonListViewModel @Inject constructor(
     private val preferences: SharedPreferences,
-    private val pokemonRepository: PokemonRepository,
+    getPokemonListPaginationUseCase: GetPokemonListPaginationUseCase
 ): ViewModel() {
 
-    fun getPokemonList() = pokemonRepository.getPokemonList(10)
+    val pokemonList = getPokemonListPaginationUseCase.execute().cachedIn(viewModelScope)
 
-    fun updatePokemonListIndex(index: Int) {
-        preferences.edit().putInt("lastVisibleItemIndex", index).apply()
+    fun getIndexAndOffset(): Pair<Int, Int> {
+        return Pair(preferences.getInt("index", 0), preferences.getInt("offset", 0))
     }
 
-    fun getLastVisiblePokemonIndex() = preferences.getInt("lastVisibleItemIndex", 0)
+    fun setIndexAndOffset(index: Int, offset: Int) {
+        preferences.edit().putInt("index", index).putInt("offset", offset).apply()
+    }
 }
