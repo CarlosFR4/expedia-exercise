@@ -4,6 +4,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.*
 import androidx.compose.foundation.layout.Row
@@ -30,7 +31,7 @@ import com.carlos.fco.rdgz.expedia.R
 import com.carlos.fco.rdgz.expedia.domain.model.Pokemon
 
 @Composable
-fun PokemonItem(pokemon: Pokemon) {
+fun PokemonItem(pokemon: Pokemon, onClick: (Pokemon) -> Unit) {
     Card(
         elevation = CardDefaults.cardElevation(
             defaultElevation = 6.dp,
@@ -38,10 +39,11 @@ fun PokemonItem(pokemon: Pokemon) {
         modifier = Modifier
             .padding(8.dp)
             .fillMaxWidth()
+            .clickable { onClick(pokemon) },
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(8.dp)
+            modifier = Modifier.padding(8.dp),
         ) {
             AsyncImage(
                 model = pokemon.orderNumber?.let { "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${it}.png" }
@@ -52,6 +54,7 @@ fun PokemonItem(pokemon: Pokemon) {
                 placeholder = rememberAsyncImagePainter(model = R.drawable.pokeball),
             )
             Spacer(modifier = Modifier.size(16.dp))
+
             Text(
                 text = pokemon.orderNumber.toString(),
                 fontSize = 10.sp,

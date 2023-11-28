@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface PokemonRepository {
     fun getPokemonList(itemsPerPage: Int): Flow<PagingData<Pokemon>>
+    suspend fun getPokemon(id: Int): Pokemon
 }

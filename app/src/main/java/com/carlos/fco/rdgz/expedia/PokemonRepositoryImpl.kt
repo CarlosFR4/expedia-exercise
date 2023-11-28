@@ -5,6 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.carlos.fco.rdgz.expedia.data.PokemonPagingSource
 import com.carlos.fco.rdgz.expedia.data.PokemonService
+import com.carlos.fco.rdgz.expedia.data.mapper.toPokemon
 import com.carlos.fco.rdgz.expedia.domain.PokemonRepository
 import com.carlos.fco.rdgz.expedia.domain.model.Pokemon
 import kotlinx.coroutines.flow.Flow
@@ -23,4 +24,6 @@ class PokemonRepositoryImpl(
             )
         }
     ).flow
+
+    override suspend fun getPokemon(id: Int): Pokemon = api.getPokemon(id).toPokemon()
 }
